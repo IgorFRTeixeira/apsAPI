@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace apsAPI
+namespace apAPI
 {
     public class Program
     {
@@ -20,7 +20,13 @@ namespace apsAPI
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    //webBuilder.UseStartup<Startup>();
+                    var port = Environment.GetEnvironmentVariable("PORT");
+
+                    webBuilder.UseStartup<Startup>()
+                    .UseUrls("http://*:" + port);
+
+
                 });
     }
 }
